@@ -1,0 +1,21 @@
+<header class="navbar">
+    <div class="container">
+        <div class="logo" routerLink="/">PortfolioBuilder</div>
+        <nav>
+            <a routerLink="/">Home</a>
+            <a routerLink="/features">Features</a>
+            <a routerLink="/how-it-works">How It Works</a>
+            <a routerLink="/pricing">Pricing</a>
+            <a routerLink="/faq">FAQ</a>
+        </nav>
+        <div class="auth-buttons" *ngIf="!isLoggedIn">
+            <button class="login" routerLink="/auth">Login</button>
+            <button class="signup" routerLink="/auth">Sign Up</button>
+        </div>
+        
+        <div class="auth-buttons" *ngIf="isLoggedIn">
+            <button class="login" routerLink="/">Logout</button>
+        </div>
+        
+    </div>
+</header>

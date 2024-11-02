@@ -1,0 +1,98 @@
+$primary-color: #3f51b5;
+$secondary-color: #f50057;
+$background-color: #f8f9fa;
+$text-color: #333;
+$footer-color: #2c2c2c;
+$card-shadow: rgba(0, 0, 0, 0.1);
+
+.faq {
+  padding: 4rem 2rem;
+  background-color: #fff;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $primary-color;
+  }
+
+  .faq-item {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px $card-shadow;
+    background-color: #f9f9f9;
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      h3 {
+        margin: 0;
+        color: $primary-color;
+      }
+      span {
+        font-size: 1.5rem;
+      }
+    }
+
+    .faq-answer {
+      margin-top: 0.5rem;
+      p {
+        color: $text-color;
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: $footer-color;
+  color: white;
+  padding: 2rem 0;
+
+  .footer-content {
+    text-align: center;
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    .social-media {
+      a {
+        color: white;
+        margin: 0 0.5rem;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+
+    form {
+      margin-top: 1rem;
+
+      input {
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        margin-right: 0.5rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        background-color: $secondary-color;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($secondary-color, 10%);
+        }
+      }
+    }
+  }
+}

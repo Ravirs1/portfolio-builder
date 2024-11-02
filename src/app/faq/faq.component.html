@@ -1,0 +1,17 @@
+
+  <app-header></app-header>
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" *ngFor="let question of faqs">
+      <div class="faq-question" (click)="question.show = !question.show">
+        <h3>{{ question.question }}</h3>
+        <span>{{ question.show ? '-' : '+' }}</span>
+      </div>
+      <div class="faq-answer" *ngIf="question.show">
+        <p>{{ question.answer }}</p>
+      </div>
+    </div>
+  </section>
+  
+<app-footer></app-footer>
+  

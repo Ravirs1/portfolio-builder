@@ -1,0 +1,58 @@
+$primary-color: #3f51b5;
+$secondary-color: #f50057;
+$background-color: #f8f9fa;
+$text-color: #333;
+$footer-color: #2c2c2c;
+$card-shadow: rgba(0, 0, 0, 0.1);
+
+
+.footer {
+    background-color: $footer-color;
+    color: white;
+    padding: 2rem 0;
+  
+    .footer-content {
+      text-align: center;
+  
+      p {
+        margin: 0.5rem 0;
+      }
+  
+      .social-media {
+        a {
+          color: white;
+          margin: 0 0.5rem;
+          text-decoration: none;
+          transition: color 0.3s;
+  
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+      }
+  
+      form {
+        margin-top: 1rem;
+  
+        input {
+          padding: 0.5rem;
+          border-radius: 5px;
+          border: none;
+          margin-right: 0.5rem;
+        }
+  
+        button {
+          padding: 0.5rem 1rem;
+          background-color: $secondary-color;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: darken($secondary-color, 10%);
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<div class="profile-settings-container">
+  <h2>Profile Settings</h2>
+
+  <!-- Custom Tabs -->
+  <div class="tabs">
+    <button (click)="setActiveTab('basicInfo')" [class.active]="activeTab === 'basicInfo'">Basic Information</button>
+    <button (click)="setActiveTab('contactInfo')" [class.active]="activeTab === 'contactInfo'">Contact Information</button>
+    <button (click)="setActiveTab('professionalDetails')" [class.active]="activeTab === 'professionalDetails'">Professional Details</button>
+    <button (click)="setActiveTab('socialLinks')" [class.active]="activeTab === 'socialLinks'">Social Links</button>
+    <button (click)="setActiveTab('bio')" [class.active]="activeTab === 'bio'">About / Bio</button>
+  </div>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSave()">
+    <!-- Basic Information Section -->
+    <div *ngIf="activeTab === 'basicInfo'" formGroupName="basicInfo" class="form-section">
+      <h3>Basic Information</h3>
+      <label for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+      <small *ngIf="profileForm.get('basicInfo.firstName')?.invalid && profileForm.get('basicInfo.firstName')?.touched">
+        First name is required
+      </small>
+  
+      <label for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+      <small *ngIf="profileForm.get('basicInfo.lastName')?.invalid && profileForm.get('basicInfo.lastName')?.touched">
+        Last name is required
+      </small>
+  
+      <label for="gender">Gender</label>
+      <select id="gender" formControlName="gender">
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+  
+      <label for="dob">Date of Birth</label>
+      <input id="dob" formControlName="dob" type="date" />
+    </div>
+  
+    <!-- Contact Information Section -->
+    <div *ngIf="activeTab === 'contactInfo'" formGroupName="contactInfo" class="form-section">
+      <h3>Contact Information</h3>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+      <small *ngIf="profileForm.get('contactInfo.email')?.invalid && profileForm.get('contactInfo.email')?.touched">
+        A valid email is required
+      </small>
+  
+      <label for="phone">Phone</label>
+      <input id="phone" formControlName="phone" type="tel" />
+    </div>
+  
+    <!-- Professional Details Section -->
+    <div *ngIf="activeTab === 'professionalDetails'" formGroupName="professionalDetails" class="form-section">
+      <h3>Professional Details</h3>
+      <label for="profession">Profession</label>
+      <input id="profession" formControlName="profession" type="text" />
+  
+      <label for="organization">Organization</label>
+      <input id="organization" formControlName="organization" type="text" />
+  
+      <label for="experience">Experience (Years)</label>
+      <input id="experience" formControlName="experience" type="number" min="0" />
+    </div>
+  
+    <!-- Social Links Section -->
+    <div *ngIf="activeTab === 'socialLinks'" formGroupName="socialLinks" class="form-section">
+      <h3>Social Links</h3>
+      <label for="linkedin">LinkedIn</label>
+      <input id="linkedin" formControlName="linkedin" type="url" />
+  
+      <label for="github">GitHub</label>
+      <input id="github" formControlName="github" type="url" />
+  
+      <label for="twitter">Twitter</label>
+      <input id="twitter" formControlName="twitter" type="url" />
+  
+      <label for="website">Website</label>
+      <input id="website" formControlName="website" type="url" />
+    </div>
+  
+    <!-- Bio Section -->
+    <div *ngIf="activeTab === 'bio'" class="form-section">
+      <h3>About / Bio</h3>
+      <textarea formControlName="bio" rows="5" placeholder="Write a short bio about yourself..."></textarea>
+      <small *ngIf="profileForm.get('bio')?.invalid && profileForm.get('bio')?.touched">
+        Bio must be under 500 characters
+      </small>
+    </div>
+  
+    <button type="submit" [disabled]="profileForm.invalid" class="submit-button">Save Changes</button>
+  </form>
+  
+</div>
+
+<app-footer></app-footer>

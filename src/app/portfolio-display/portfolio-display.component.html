@@ -1,0 +1,64 @@
+<app-header></app-header>
+<div class="portfolio-display-container">
+  <!-- Header -->
+  <header class="profile-header" *ngIf="profileData">
+    <img [src]="profileData.profilePicture || 'assets/profile-placeholder.png'" alt="Profile Picture" class="profile-pic" />
+    <h1>{{ profileData.professionalDetails?.profession }}</h1>
+    <p class="info">{{ profileData.basicInfo.gender }} | {{ profileData.contactInfo.email }}</p>
+    <p class="dob">{{ profileData.basicInfo.dob | date: 'longDate' }}</p>
+  </header>
+
+  <!-- Custom Tabs -->
+  <div class="tabs">
+    <button (click)="setActiveTab('about')" [class.active]="activeTab === 'about'">About</button>
+    <button (click)="setActiveTab('experience')" [class.active]="activeTab === 'experience'">Experience</button>
+    <button (click)="setActiveTab('skills')" [class.active]="activeTab === 'skills'">Skills</button>
+    <button (click)="setActiveTab('projects')" [class.active]="activeTab === 'projects'">Projects</button>
+    <button (click)="setActiveTab('social')" [class.active]="activeTab === 'social'">Social Links</button>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <!-- About Section -->
+    <div *ngIf="activeTab === 'about' && profileData" class="tab-section">
+      <p><strong>Bio:</strong> {{ profileData.bio }}</p>
+      <p><strong>Location:</strong> {{ profileData.contactInfo.phone }}</p>
+      <p><strong>Name:</strong> {{ profileData.basicInfo.firstName }} {{ profileData.basicInfo.lastName }}</p>
+    </div>
+
+    <!-- Experience Section -->
+    <div *ngIf="activeTab === 'experience' && profileData" class="tab-section">
+      <p><strong>Organization:</strong> {{ profileData.professionalDetails?.organization }}</p>
+      <p><strong>Experience:</strong> {{ profileData.professionalDetails?.experience }}</p>
+    </div>
+
+    <!-- Skills Section -->
+    <!-- <div *ngIf="activeTab === 'skills' && profileData" class="tab-section">
+      <p><strong>Skills:</strong></p>
+      <ul>
+        <li *ngFor="let skill of profileData.skills">{{ skill.skillName }} ({{ skill.level }})</li>
+      </ul>
+    </div> -->
+
+    <!-- Projects Section -->
+    <!-- <div *ngIf="activeTab === 'projects' && profileData" class="tab-section">
+      <p><strong>Projects:</strong></p>
+      <ul>
+        <li *ngFor="let project of profileData.projects">
+          <strong>{{ project.projectName }}</strong>: {{ project.description }} - <a [href]="project.link" target="_blank">View</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- Social Links Section -->
+    <div *ngIf="activeTab === 'social' && profileData" class="tab-section">
+      <p><strong>Social Links:</strong></p>
+      <p *ngIf="profileData.socialLinks?.linkedin"><strong>LinkedIn:</strong> <a [href]="profileData.socialLinks?.linkedin" target="_blank">{{ profileData.socialLinks?.linkedin }}</a></p>
+      <p *ngIf="profileData.socialLinks?.github"><strong>GitHub:</strong> <a [href]="profileData.socialLinks?.github" target="_blank">{{ profileData.socialLinks?.github }}</a></p>
+      <p *ngIf="profileData.socialLinks?.twitter"><strong>Twitter:</strong> <a [href]="profileData.socialLinks?.twitter" target="_blank">{{ profileData.socialLinks?.twitter }}</a></p>
+      <p *ngIf="profileData.socialLinks?.website"><strong>Website:</strong> <a [href]="profileData.socialLinks?.website" target="_blank">{{ profileData.socialLinks?.website }}</a></p>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

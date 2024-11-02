@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+// src/styles.scss
+$primary-color: #3f51b5;
+$secondary-color: #f50057;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $primary-color;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
