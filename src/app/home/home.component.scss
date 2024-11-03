@@ -1,8 +1,8 @@
-$primary-color: #3f51b5;
-$secondary-color: #f50057;
+$primary-color: #212e38;
+$secondary-color: #4896d3;
 $background-color: #f8f9fa;
 $text-color: #333;
-$footer-color: #2c2c2c;
+$footer-color: #212e38;
 $card-shadow: rgba(0, 0, 0, 0.1);
 
 body {
@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   color: $text-color;
+  background-color: $background-color; /* Set background color for the body */
 }
 
 .navbar {
@@ -21,6 +22,7 @@ body {
   display: flex;
   justify-content: space-between;
   z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
 
   .container {
     display: flex;
@@ -33,6 +35,12 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     color: $primary-color;
+    transition: transform 0.3s, color 0.3s; /* Added color transition */
+    
+    &:hover {
+      transform: scale(1.1); /* Logo scale effect on hover */
+      color: $secondary-color; /* Change color on hover */
+    }
   }
 
   nav {
@@ -45,10 +53,27 @@ body {
       text-decoration: none;
       color: $text-color;
       font-weight: 500;
+      position: relative; /* Position for underline effect */
       transition: color 0.3s;
 
       &:hover {
         color: $secondary-color;
+
+        &::after {
+          width: 100%; /* Expand underline on hover */
+        }
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 0;
+        background: $secondary-color;
+        transition: width 0.3s; /* Smooth transition for underline */
+        position: absolute;
+        left: 50%;
+        bottom: -5px; /* Position below the link */
       }
     }
   }
@@ -62,10 +87,11 @@ body {
       margin-left: 0.5rem;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s; /* Transition for background and scale */
 
       &:hover {
         background: darken($primary-color, 10%);
+        transform: translateY(-2px); /* Lift button on hover */
       }
     }
   }
@@ -78,6 +104,7 @@ body {
   color: #fff;
   padding: 5rem 2rem;
   text-align: center;
+  animation: fadeIn 1s ease-in; /* Fade-in animation for hero section */
 
   .hero-content {
     max-width: 800px;
@@ -86,11 +113,13 @@ body {
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
+      animation: slideIn 0.5s ease-out; /* Slide-in animation */
     }
 
     p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
+      animation: fadeIn 0.5s ease-in; /* Fade-in animation */
     }
 
     .hero-buttons {
@@ -105,10 +134,11 @@ body {
         padding: 1rem 2rem;
         border-radius: 5px;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background 0.3s, transform 0.3s; /* Added scale effect */
 
         &:hover {
           background-color: darken($secondary-color, 10%);
+          transform: scale(1.05); /* Scale on hover */
         }
       }
 
@@ -134,6 +164,7 @@ body {
   padding: 4rem 2rem;
   background-color: #fff;
   text-align: center;
+  animation: fadeIn 0.7s ease-in; /* Fade-in animation for features section */
 
   h2 {
     font-size: 2.5rem;
@@ -154,11 +185,12 @@ body {
       box-shadow: 0 2px 5px $card-shadow;
       border-radius: 10px;
       background-color: #f9f9f9;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s; /* Transition for scale and shadow */
 
       img {
         width: 60px;
         height: 60px;
+        transition: transform 0.3s; /* Image scale effect */
       }
 
       h3 {
@@ -173,6 +205,11 @@ body {
 
       &:hover {
         transform: scale(1.05);
+        box-shadow: 0 4px 15px $card-shadow; /* Darker shadow on hover */
+        
+        img {
+          transform: scale(1.1); /* Scale image on hover */
+        }
       }
     }
   }
@@ -201,10 +238,12 @@ body {
       padding: 2rem;
       border-radius: 10px;
       background-color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s; /* Added box shadow transition */
 
       img {
         width: 60px;
         height: 60px;
+        transition: transform 0.3s; /* Image scale effect */
       }
 
       h3 {
@@ -215,6 +254,15 @@ body {
 
       p {
         margin-top: 0.5rem;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px $card-shadow; /* Darker shadow on hover */
+        
+        img {
+          transform: scale(1.1); /* Scale image on hover */
+        }
       }
     }
   }
@@ -242,7 +290,8 @@ body {
       border: 1px solid #eaeaea;
       border-radius: 10px;
       box-shadow: 0 2px 5px $card-shadow;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s; /* Added shadow transition */
+      background-color: $background-color;
 
       h3 {
         font-size: 1.8rem;
@@ -252,7 +301,7 @@ body {
 
       p {
         font-size: 1.2rem;
-        color: $secondary-color;
+        color: $primary-color;
       }
 
       ul {
@@ -261,6 +310,7 @@ body {
 
         li {
           margin: 0.5rem 0;
+          color: $primary-color;
         }
       }
 
@@ -271,15 +321,17 @@ body {
         padding: 0.75rem 1.5rem;
         border-radius: 5px;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background 0.3s, transform 0.3s; /* Added scale effect */
 
         &:hover {
           background-color: darken($secondary-color, 10%);
+          transform: scale(1.05); /* Scale on hover */
         }
       }
 
       &:hover {
-        transform: scale(1.05);
+        transform: translateY(-5px); /* Lift card on hover */
+        box-shadow: 0 6px 15px $card-shadow; /* Darker shadow on hover */
       }
     }
   }
@@ -287,8 +339,9 @@ body {
 
 .testimonials {
   padding: 4rem 2rem;
-  background-color: #f8f9fa;
+  background-color: #f9f9f9;
   text-align: center;
+  color: $primary-color;
 
   h2 {
     font-size: 2.5rem;
@@ -296,27 +349,35 @@ body {
     color: $primary-color;
   }
 
-  .testimonial-carousel {
+  .testimonial-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 
     .testimonial {
-      max-width: 600px;
-      margin: 1rem 0;
-      padding: 1.5rem;
+      flex: 1 1 30%;
+      margin: 1rem;
+      padding: 2rem;
       border: 1px solid #eaeaea;
       border-radius: 10px;
       box-shadow: 0 2px 5px $card-shadow;
+      transition: transform 0.3s, box-shadow 0.3s; /* Added shadow transition */
+      color: $primary-color;
 
       p {
-        font-style: italic;
-        margin: 0;
+        font-size: 1.2rem;
+        color: $primary-color;
       }
 
-      h4 {
+      .author {
         margin-top: 1rem;
         font-weight: bold;
+        color: $primary-color;
+      }
+
+      &:hover {
+        transform: translateY(-5px); /* Lift card on hover */
+        box-shadow: 0 6px 15px $card-shadow; /* Darker shadow on hover */
       }
     }
   }
@@ -324,8 +385,8 @@ body {
 
 .faq {
   padding: 4rem 2rem;
-  background-color: #fff;
   text-align: center;
+  background-color: $background-color;
 
   h2 {
     font-size: 2.5rem;
@@ -334,25 +395,103 @@ body {
   }
 
   .faq-list {
-    .faq-item {
-      margin: 1rem 0;
-      text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-      h4 {
-        font-size: 1.2rem;
-        color: $primary-color;
-        cursor: pointer;
-        transition: color 0.3s;
+  .faq-item {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px $card-shadow;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s;
 
-        &:hover {
-          color: $secondary-color;
-        }
-      }
+    h4 {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: $primary-color;
+      position: relative;
 
-      p {
-        margin-top: 0.5rem;
-        color: $text-color;
+      &::after {
+        content: '+';
+        position: absolute;
+        right: 1rem;
+        font-size: 1.5rem;
+        transition: transform 0.3s;
       }
     }
+
+    .answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      font-size: 1.2rem;
+      color: $text-color;
+      padding-top: 0.5rem;
+    }
+
+    &.active {
+      box-shadow: 0 4px 15px $card-shadow;
+
+      h4::after {
+        content: '-';
+        transform: rotate(180deg); /* Rotate the icon */
+      }
+
+      .answer {
+        max-height: 200px; /* Adjust as needed */
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: $footer-color;
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  .social-icons {
+    margin-top: 1rem;
+
+    a {
+      margin: 0 1rem;
+      color: white;
+      font-size: 1.5rem;
+
+      &:hover {
+        color: $secondary-color; /* Change color on hover */
+      }
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

@@ -5,8 +5,8 @@
       <h1>Create a Stunning Portfolio in Minutes</h1>
       <p>Showcase your talent, skills, or products with a professional website. No coding required.</p>
       <div class="hero-buttons">
-        <button class="primary-cta" routerLink="profile-setting">Get Started for Free</button>
-        <button class="secondary-cta">Explore Templates</button>
+        <button class="primary-cta" (click)="getStarted()">Get Started for Free</button>
+        <!-- <button class="secondary-cta">Explore Templates</button> -->
       </div>
     </div>
   </section>
@@ -116,16 +116,18 @@
   <section id="faq" class="faq">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-list">
-      <div class="faq-item">
-        <h4>How do I create my portfolio?</h4>
-        <p>Simply sign up and follow the easy steps to choose a template and customize it.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Can I change my template later?</h4>
-        <p>Yes, you can change your template anytime from your account settings.</p>
+      <div 
+        class="faq-item" 
+        *ngFor="let faq of faqs; let i = index" 
+        [ngClass]="{ 'active': activeIndex === i }"
+        (click)="toggleAnswer(i)">
+        
+        <h4>{{ faq.question }}</h4>
+        <p class="answer" *ngIf="activeIndex === i">{{ faq.answer }}</p>
       </div>
     </div>
   </section>
+  
   
   <app-footer></app-footer>
   

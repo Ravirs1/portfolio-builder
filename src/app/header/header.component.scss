@@ -1,72 +1,128 @@
-$primary-color: #3f51b5;
-$secondary-color: #f50057;
-$background-color: #f8f9fa;
-$text-color: #333;
-$footer-color: #2c2c2c;
-$card-shadow: rgba(0, 0, 0, 0.1);
-
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  color: $text-color;
-}
-
+/* General navbar styling */
 .navbar {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  padding: 1rem;
-  border-bottom: 1px solid #eaeaea;
+  background-color: #212e38; /* Darker background for luxury feel */
+  padding: 20px 40px; /* Ample padding for spaciousness */
   display: flex;
   justify-content: space-between;
-  z-index: 10;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Transition for background and shadow */
+}
+
+.navbar:hover {
+  background-color: #3a3a3a; /* Slightly lighter on hover */
+}
+
+/* Container for header elements */
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo styling */
+.logo {
+  font-size: 24px;
+  color: #4896d3; /* Gold color for logo */
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s; /* Logo scaling on hover */
+}
+
+.logo:hover {
+  transform: scale(1.05); /* Slightly enlarge logo on hover */
+}
+
+/* Navigation menu styling */
+nav {
+  flex-grow: 1; /* Allow nav to take available space */
+  margin: 0 20px; /* Margin for spacing */
+}
+
+nav a {
+  color: #ffffff; /* White text for links */
+  padding: 0 15px;
+  text-decoration: none;
+  font-size: 16px;
+  position: relative; /* Position for underline effect */
+  transition: color 0.3s; /* Transition for color change */
+}
+
+nav a:hover {
+  color: #4896d3; /* Gold color on hover */
+}
+
+/* Underline effect on hover */
+nav a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #4896d3; /* Gold underline */
+  transition: width 0.3s; /* Transition for width */
+  position: absolute;
+  left: 50%;
+  bottom: -5px; /* Position below the link */
+}
+
+nav a:hover::after {
+  width: 100%; /* Expand underline on hover */
+  left: 0; /* Align to the left */
+}
+
+/* Authentication buttons styling */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.auth-buttons button {
+  background-color: #4896d3; /* Gold button */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px; /* Rounded edges */
+  margin-left: 10px; /* Space between buttons */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Transition for background and scale */
+}
+
+.auth-buttons button:hover {
+  background-color: #c09c30; /* Darker gold on hover */
+  transform: translateY(-2px); /* Lift button on hover */
+}
+
+/* User avatar styling */
+.user-avatar {
+  background-color: #4896d3; /* Gold background */
+  color: #ffffff; /* White text */
+  border-radius: 50%; /* Circular shape */
+  padding: 5px 10px;
+  margin-right: 10px; /* Space before logout button */
+}
+
+/* Search icon styling */
+.search-icon {
+  color: #4896d3; /* Gold color for search icon */
+  cursor: pointer;
+  transition: transform 0.3s; /* Animation for scale */
+}
+
+.search-icon:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav {
+      display: none; /* Hide navigation links on small screens */
+  }
 
   .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+      justify-content: space-between;
   }
 
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: $primary-color;
-  }
-
-  nav {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-
-    a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: $text-color;
-      font-weight: 500;
-      transition: color 0.3s;
-
-      &:hover {
-        color: $secondary-color;
-      }
-    }
-  }
-
-  .auth-buttons {
-    .login, .signup {
-      background: $primary-color;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      margin-left: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-
-      &:hover {
-        background: darken($primary-color, 10%);
-      }
-    }
+  .hamburger {
+      display: block; /* Add hamburger icon for mobile */
   }
 }

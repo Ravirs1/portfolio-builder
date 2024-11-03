@@ -14,12 +14,32 @@ import { ProfileSettingService } from './profile-setting.service';
   styleUrls: ['./profile-setting.component.scss']
 })
 export class ProfileSettingComponent implements OnInit {
-  profileForm: FormGroup;
+  profileForm!: FormGroup;
   userId: any;
   activeTab: string = 'basicInfo'; // Default active tab
   selectedFiles: any = [];
 
   constructor(private fb: FormBuilder, private profileService: ProfileSettingService) {
+  
+  }
+
+  ngOnInit(): void {
+    this.initData();
+    const credentials = sessionStorage.getItem('credentials');
+    this.userId = credentials ? JSON.parse(credentials).uid || '' : '';
+  
+    this.profileService.getProfile(this.userId).subscribe(profileData => {
+      if (profileData) {
+        this.profileForm.patchValue(profileData);
+      }
+    });
+  
+    // Ensure the initial tab is set after form initialization
+    this.activeTab = 'basicInfo';
+    this.setActiveTab('basicInfo');
+  }
+
+  initData() {
     this.profileForm = this.fb.group({
       basicInfo: this.fb.group({
         firstName: [''],
@@ -48,21 +68,12 @@ export class ProfileSettingComponent implements OnInit {
         externalLinks: this.fb.array([])
       })
     });
-  }
-
-  ngOnInit(): void {
-    const credentials = sessionStorage.getItem('credentials');
-    this.userId = credentials ? JSON.parse(credentials).uid || '' : '';
-    // Load profile data on init
-    this.profileService.getProfile(this.userId).subscribe(profileData => {
-      if (profileData) {
-        this.profileForm.patchValue(profileData);
-      }
-    });
+    console.log(this.profileForm)
   }
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;
+    console.log(this.activeTab)
   }
 
   onSave(): void {

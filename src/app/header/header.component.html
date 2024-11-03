@@ -9,13 +9,21 @@
             <a routerLink="/faq">FAQ</a>
         </nav>
         <div class="auth-buttons" *ngIf="!isLoggedIn">
-            <button class="login" routerLink="/auth">Login</button>
-            <button class="signup" routerLink="/auth">Sign Up</button>
+            <button class="login" routerLink="/auth">
+                <i class="icon-lock"></i> Login
+            </button>
+            <button class="signup" routerLink="/auth">
+                Sign Up
+            </button>
         </div>
         
         <div class="auth-buttons" *ngIf="isLoggedIn">
-            <button class="login" routerLink="/">Logout</button>
+            <!-- <span class="user-avatar">U</span> -->
+            <button class="logout" (click)="logout()">Logout</button>
         </div>
         
+        <div class="search-icon">
+            <i class="icon-search"></i>
+        </div>
     </div>
 </header>
