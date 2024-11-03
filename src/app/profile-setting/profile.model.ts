@@ -1,4 +1,3 @@
-// profile.model.ts
 export interface Profile {
     id: string;
     basicInfo: {
@@ -23,6 +22,9 @@ export interface Profile {
       website?: string;
     };
     bio?: string;
-    profilePicture?: string; // URL or path for profile picture
-  }
-  
+    profilePicture?: string;
+    filesAndLinks?: {
+      files: string[];
+      externalLinks?: string[]; // Made optional
+    };
+}

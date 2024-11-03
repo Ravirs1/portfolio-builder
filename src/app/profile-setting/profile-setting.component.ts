@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ProfileSettingService } from './profile-setting.service';
@@ -17,17 +17,18 @@ export class ProfileSettingComponent implements OnInit {
   profileForm: FormGroup;
   userId: any;
   activeTab: string = 'basicInfo'; // Default active tab
+  selectedFiles: any = [];
 
   constructor(private fb: FormBuilder, private profileService: ProfileSettingService) {
     this.profileForm = this.fb.group({
       basicInfo: this.fb.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        firstName: [''],
+        lastName: [''],
         gender: [''],
         dob: ['']
       }),
       contactInfo: this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', [ Validators.email]],
         phone: ['']
       }),
       professionalDetails: this.fb.group({
@@ -42,6 +43,10 @@ export class ProfileSettingComponent implements OnInit {
         website: ['']
       }),
       bio: ['', Validators.maxLength(500)],
+      filesAndLinks: this.fb.group({
+        files: this.fb.array([]),
+        externalLinks: this.fb.array([])
+      })
     });
   }
 
@@ -62,13 +67,54 @@ export class ProfileSettingComponent implements OnInit {
 
   onSave(): void {
     if (this.profileForm.valid) {
-      this.profileService.saveProfile(this.profileForm.value).then(() => {
-        console.log('Profile saved successfully!');
+      const formData = {
+        ...this.profileForm.value,
+        filesAndLinks: {
+          files: this.files.value,
+          externalLinks: this.externalLinks.value
+        }
+      };
+
+      this.profileService.saveProfile(formData, this.selectedFiles).then(() => {
+        console.log('Profile saved successfully, including files and links!');
       }).catch(error => {
-        console.error('Error saving profile:', error);
+        console.error('Error saving profile with files and links:', error);
       });
     }
   }
 
-  // The onUpdate and onDelete methods can be implemented if needed.
+  // Getters for files and external links
+  get files(): FormArray {
+    return this.profileForm.get('filesAndLinks.files') as FormArray;
+  }
+
+  get externalLinks(): FormArray {
+    return this.profileForm.get('filesAndLinks.externalLinks') as FormArray;
+  }
+
+  // Method to add a new file input
+  addFile(): void {
+    this.files.push(new FormControl(''));
+  }
+
+  removeFile(index: number): void {
+    this.files.removeAt(index);
+  }
+
+  addExternalLink(): void {
+    this.externalLinks.push(new FormControl('', Validators.required));
+  }
+  
+  removeExternalLink(index: number): void {
+    this.externalLinks.removeAt(index);
+  }
+
+  // Handle file selection
+  onFileSelected(event: Event, index: number): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedFiles[index] = fileInput.files[0];
+      // Additional logic for file handling can go here
+    }
+  }
 }

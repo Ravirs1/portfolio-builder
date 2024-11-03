@@ -15,6 +15,7 @@
     <button (click)="setActiveTab('skills')" [class.active]="activeTab === 'skills'">Skills</button>
     <button (click)="setActiveTab('projects')" [class.active]="activeTab === 'projects'">Projects</button>
     <button (click)="setActiveTab('social')" [class.active]="activeTab === 'social'">Social Links</button>
+    <button (click)="setActiveTab('filesAndLinks')" [class.active]="activeTab === 'filesAndLinks'">Files & Links</button>
   </div>
 
   <!-- Tab Content -->
@@ -33,6 +34,7 @@
     </div>
 
     <!-- Skills Section -->
+    <!-- Skills code is commented out, can be added back if needed -->
     <!-- <div *ngIf="activeTab === 'skills' && profileData" class="tab-section">
       <p><strong>Skills:</strong></p>
       <ul>
@@ -41,6 +43,7 @@
     </div> -->
 
     <!-- Projects Section -->
+    <!-- Projects code is commented out, can be added back if needed -->
     <!-- <div *ngIf="activeTab === 'projects' && profileData" class="tab-section">
       <p><strong>Projects:</strong></p>
       <ul>
@@ -58,6 +61,33 @@
       <p *ngIf="profileData.socialLinks?.twitter"><strong>Twitter:</strong> <a [href]="profileData.socialLinks?.twitter" target="_blank">{{ profileData.socialLinks?.twitter }}</a></p>
       <p *ngIf="profileData.socialLinks?.website"><strong>Website:</strong> <a [href]="profileData.socialLinks?.website" target="_blank">{{ profileData.socialLinks?.website }}</a></p>
     </div>
+
+    <!-- Files & Links Section -->
+ <!-- Files & Links Section -->
+<div *ngIf="activeTab === 'filesAndLinks' && profileData" class="tab-section">
+  <h3>Files:</h3>
+  <ul class="file-list">
+    <li *ngFor="let file of profileData.filesAndLinks?.files">
+      <ng-container *ngIf="isImage(file); else videoTemplate">
+        <img [src]="file" alt="File Image" class="file-image" />
+      </ng-container>
+      <ng-template #videoTemplate>
+        <video [src]="file" controls class="file-video">
+          Your browser does not support the video tag.
+        </video>
+      </ng-template>
+      <p *ngIf="isImage(file)">Image File: <a [href]="file" target="_blank">Download</a></p>
+      <p *ngIf="!isImage(file)">Video File: <a [href]="file" target="_blank">Download</a></p>
+    </li>
+  </ul>
+  <h3>External Links:</h3>
+  <ul>
+    <li *ngFor="let link of profileData.filesAndLinks?.externalLinks">
+      <a [href]="link" target="_blank">{{ link }}</a>
+    </li>
+  </ul>
+</div>
+
   </div>
 </div>
 

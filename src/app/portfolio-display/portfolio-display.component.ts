@@ -36,4 +36,9 @@ export class PortfolioDisplayComponent implements OnInit {
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
+  isImage(file: string): boolean {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg'];
+    return imageExtensions.some(ext => file.endsWith(ext));
+  }
+  
 }

@@ -99,3 +99,26 @@ hr {
   border-top: 1px solid #ddd;
   margin: 1rem 0;
 }
+
+.file-list {
+  list-style-type: none; // Remove default bullets
+  padding: 0; // Remove default padding
+}
+
+.file-list li {
+  margin-bottom: 1rem; // Space between files
+}
+
+.file-image {
+  max-width: 100%; // Responsive image size
+  height: auto; // Maintain aspect ratio
+  border: 1px solid #ddd; // Optional: border for images
+  border-radius: 4px; // Rounded corners
+}
+
+.file-video {
+  max-width: 100%; // Responsive video size
+  height: auto; // Maintain aspect ratio
+  border: 1px solid #ddd; // Optional: border for videos
+  border-radius: 4px; // Rounded corners
+}
